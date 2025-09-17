@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -18,9 +20,9 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping()
-    public void getAllProducts(){
-
+    @GetMapping("/")
+    public ArrayList<GenericProductDto> getAllProducts(){
+        return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
@@ -28,12 +30,14 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
+
+
     public void updateProductById(){
 
     }
 
-    @PostMapping()
-    public void createProduct(){
-
+    @PostMapping("/")
+    public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto){
+        return productService.createProduct(genericProductDto);
     }
 }
