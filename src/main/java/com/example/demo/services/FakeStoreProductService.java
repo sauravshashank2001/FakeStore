@@ -4,6 +4,7 @@ import com.example.demo.dtos.FakeStoreProductDto;
 import com.example.demo.dtos.GenericProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -91,5 +92,23 @@ public class FakeStoreProductService implements ProductService{
         genericProductDto1.setImage(fakeStoreProductDto.getImage());
 
         return genericProductDto1;
+    }
+
+    @Override
+    public GenericProductDto deleteProduct(Long id){
+
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto> response = restTemplate.exchange(
+                productUrl, HttpMethod.GET,null,FakeStoreProductDto.class,id);
+
+        FakeStoreProductDto fakeStoreProductDto = response.getBody();
+        GenericProductDto genericProductDto = new GenericProductDto();
+        genericProductDto.setId(fakeStoreProductDto.getId());
+        genericProductDto.setTitle(fakeStoreProductDto.getTitle());
+        genericProductDto.setPrice(fakeStoreProductDto.getPrice());
+        genericProductDto.setDescription(fakeStoreProductDto.getDescription());
+        genericProductDto.setCategory(fakeStoreProductDto.getCategory());
+        genericProductDto.setImage(fakeStoreProductDto.getImage());
+        return genericProductDto;
     }
 }
