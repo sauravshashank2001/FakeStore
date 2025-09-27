@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public ArrayList<GenericProductDto> getAllProducts(){
+    public List<GenericProductDto> getAllProducts(){
         return productService.getAllProducts();
     }
 

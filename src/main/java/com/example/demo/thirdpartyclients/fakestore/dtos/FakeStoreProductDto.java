@@ -1,6 +1,5 @@
-package com.example.demo.dtos;
+package com.example.demo.thirdpartyclients.fakestore.dtos;
 
-import com.example.demo.models.Category;
 import lombok.Getter;
 import lombok.Setter;
 
